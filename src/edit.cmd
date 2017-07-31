@@ -1,1 +1,2 @@
-@start atom %~dp0 & exit
+@echo off
+start /min atom %~dp0\
