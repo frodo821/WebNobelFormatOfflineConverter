@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+TagtoHtmlClass変換(以下tc変換)設定XMLのルートノード。tclist要素は必ずルートノードでなくてはならない。また、ルートノードは二つ以上あってはならない。省略不可。
+site属性:タグの種類を示す。省略不可。
+url属性:投稿先を示す。省略不可。
+tagbegin属性:タグの開始エンティティー文字を示す。省略不可。グローバルな変数$tagbeginでアクセスできる。
+tagend属性:タグの開始エンティティー文字を示す。省略不可。グローバルな変数$tagendでアクセスできる。
+-->
+<tclist site="hameln" url="https://syosetu.org/" tagbegin="《" tagend="》">
+<!--
+tc変換のBBコード変換設定のテーブルを示す。toc要素は必ずtclist要素の直接の子要素でなくてはならない。また、このノードは二つ以上あってはならない。
+regex属性:タグにマッチする正規表現を示す。内包するclass要素すべてに適用される。省略不可。
+tag属性:正規表現のうち、タグの要素に一致する後方参照の番号を示す。省略可能。
+target属性:正規表現のうち、そのタグの修飾する対象に一致する後方参照の番号を示す。省略可能。
+-->
+  <toc regex="[$tagbegin]([^$tagend]+)[$tagend]([^$tagbegin]+)[$tagbegin]/\1[$tagend]" tag="1" target="2">
+<!--
+tc変換のBBコード変換設定のテーブルの要素を示す。class要素は必ずtclist要素の直接の子要素でなくてはならない。
+name属性:htmlのタグエンティティーのクラスを示す。省略不可。
+tag属性:BBタグのタグ文字を示す。省略不可。
+htmlentity属性:html上で、そのBBタグに対応するhtml要素名を示す。省略可能。省略した場合、span要素が適用される。
+-->
+    <class name="bold" tag="b" htmlentity="span" />
+    <class name="italic" tag="i" htmlentity="span" />
+    <class name="strike" tag="s" htmlentity="span" />
+    <class name="underline" tag="u" htmlentity="span" />
+    <class name="small" tag="small" htmlentity="span" />
+    <class name="big" tag="big" htmlentity="span" />
+    <class name="xsmall" tag="xsmall" htmlentity="span" />
+    <class name="xbig" tag="xbig" htmlentity="span" />
+    <class name="center" tag="center" htmlentity="div" />
+    <class name="right" tag="right" htmlentity="div" />
+    <class name="jump_link" tag="link" htmlentity="a" />
+  </toc>
+<!--
+tc変換のBBコード以外の変換設定のテーブルを示す。tt要素は必ずtclist要素の直接の子要素でなくてはならない。また、このノードは二つ以上あってはならない。
+設定できる属性は存在しない。
+-->
+  <tt>
+<!--
+tc変換のBBコード以外の変換設定のテーブルの要素を示す。translation要素は必ずtt要素の直接の子要素でなくてはならない。
+name属性:そのタグエンティティーが表す機能を示す。省略不可。
+regex属性:そのタグエンティティーに一致する正規表現を示す。省略不可。
+target属性:正規表現のうち、対象に一致する後方参照の番号を示す。省略可能。
+subject属性:正規表現のうち、主体に一致する後方参照の番号を示す。省略可能。
+-->
+    <translation name="ruby" regex="[|]([^$tagbegin|]*)[$tagbegin]([^$tagend|]*)[$tagend]" target="1" subject="2" />
+    <translation name="dotamark" regex="[$tagbegin]{2}([^$tagend]+)[$tagend]{2}" target="1" subject="" />
+  </tt>
+</tclist>

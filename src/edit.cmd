@@ -1,0 +1,1 @@
+@start atom %~dp0 & exit
