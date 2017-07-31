@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<settings formatversion="0.0.1-Dev">
+  <metadata>
+    <var id="cfgpath" content="$workdir\userconfig.cfg" />
+    <meta type="defaultsite" content="Hameln" url="http://syosetu.org" />
+    <meta type="datever" content="2017-06-14" />
+    <meta type="defaultencode" content="utf-8" />
+    <source type="defaultfile" href="$USERPROFILE\temp.wnf" />
+  </metadata>
+  <acceptable_extender>
+    <extender extender=".wnf" type="Web Nobel Format" />
+  </acceptable_extender>
+  <config type="external" href="$cfgpath" priority="high" />
+  <config type="external_xml" herf="$workdir\user.xml" />
+  <config type="internal" priority="low">
+    #-*- coding:utf-8 -*-
+    #config need to be written by python.
+    #cannot use "import" statement.
+    #list of available modules in this config is here:
+    #
+    #list of available internal variable in this config is here:
+    # user-defined_vars as dictionary → defined in setting xml with var element.
+    # workdir as str → The directory location where main.py exists.
+    # environment as dictionary → Environment vars of working PC.
+  </config>
+</settings>
